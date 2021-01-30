@@ -8,15 +8,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MailListReader {
 
     public static List<Mail> read(String fileName){
         List<Mail> list = new ArrayList<>();
-        BufferedReader reader = null;
         try {
             
-            reader = new BufferedReader(new FileReader(new File(fileName)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
             while(true) {
                 String line = reader.readLine();
                 if(line == null) break;

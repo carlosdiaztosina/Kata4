@@ -4,36 +4,18 @@ import kata4.view.MailHistogramBuilder;
 import kata4.view.MailListReader;
 import kata4.view.HistogramDisplay;
 import kata4.model.Mail;
+import kata4.persistence.MailListReader;
 import kata4.model.Histogram;
 import java.util.List;
 
 
 public class Kata4 {
-    private static List<Mail> mailList;
-    private static Histogram <String> mailHistogram;
-    
     public static void main(String[] args) {
-       execute(); 
+        String  nombreFile = new String ("email.txt");
+        List<Mail> mailList = MailListReader.read(nombreFile);
+        Histogram <String> mailHistogram = MailHistogramBuilder.build(mailList);
+        
+        HistogramDisplay histogramDisplay = new HistogramDisplay(histogram);
+        histogramDisplay.execute();
     }
-    
-    private static void execute() {
-        input();
-        process();
-        output();
-    }
-    
-    private static void input() {
-        String fileName = new String("emails.txt");
-        mailList = MailListReader.read(fileName);
-    }
-    
-    private static void process() {
-        mailHistogram = MailHistogramBuilder.build(mailList);
-
-    }
-    
-    private static void output() {
-        new HistogramDisplay("HISTOGRAMA",mailHistogram).execute();
-    }
-    
 }
